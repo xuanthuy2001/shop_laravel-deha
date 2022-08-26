@@ -25,9 +25,6 @@
                   <select class="form-control" id="exampleFormControlSelect1" name="group">
                         <option name="system">System</option>
                         <option name="user">User</option>
-                        <option name="category">Category</option>
-                        <option name="coupon">Coupon</option>
-
                   </select>
             </div>
             <div class="form-group">
@@ -37,7 +34,7 @@
                         <!-- system => [] -->
                         @foreach ($permissions as $groupName => $permission)
 
-                        <div class="col-5">
+                        <div class="col-2">
                               <h4>{{$groupName}}</h4>
                               <!-- permission là 1 mảng gán tên mảng đó là $item -->
                               <div>

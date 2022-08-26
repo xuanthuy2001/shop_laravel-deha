@@ -19,22 +19,19 @@ class RoleController extends Controller
         // compact truyền dữ liệu sang view
         return view('admin.roles.index', compact('roles'));
     }
-
-
     public function create()
     {
-        // groupBy dùng để nhóm kết quả của truy vấn
+        // groupBy dùng để nhóm kết quả của truy vấn khi cùng 1 group 
         $permissions = Permission::all()->groupBy('group');
         return view('admin.roles.create', compact('permissions'));
     }
-
 
     public function store(CreateRoleRequest $request)
     {
         // dd($request->all());
         $dataCreate = $request->all();
         $dataCreate['guard_name'] = 'web';
-
+// dd($dataCreate);
         $role = Role::create($dataCreate);
         // dd($role);
         // Chắc các bạn ai cũng đều rất ngại khi làm việc với quan hệ n-n, nhưng giờ Eloquent đã cung cấp một số phương thức rất hữu ích để làm việc với các model quan hệ. Vẫn ví dụ 1 course có thể có nhiều subjects và 1 subject cũng có thể nằm trong nhiều courses. Để thêm 1 subject cho 1 course bằng cách chèn thêm 1 bản ghi vào trong bảng trung gian thì ta sử dụng phương thức attach
@@ -79,14 +76,10 @@ class RoleController extends Controller
         return redirect('roles')->with('message', 'sửa thành công');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    
     public function destroy($id)
     {
-        //
+        Role::destroy($id);
+        return redirect('roles')->with('message', 'Xóa thành công');
     }
 }
