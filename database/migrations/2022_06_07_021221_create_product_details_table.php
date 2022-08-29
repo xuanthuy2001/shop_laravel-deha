@@ -18,7 +18,6 @@ class CreateProductDetailsTable extends Migration
             $table->id();
 
             $table->string('size');
-            $table->string('color');
             $table->smallInteger('quantity');
             $table->foreignIdFor(Product::class)->constrained()->cascadeOnDelete();
             $table->timestamps();

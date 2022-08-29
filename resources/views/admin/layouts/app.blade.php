@@ -36,6 +36,7 @@
       <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
       <!-- CSS Files -->
       <link id="pagestyle" href="{{asset('admin/assets/css/material-dashboard.css?v=3.0.2')}}" rel="stylesheet" />
+      @yield('style')
 </head>
 
 <body class="g-sidenav-show  bg-gray-200">
@@ -322,7 +323,8 @@
       <script src="{{asset('admin/assets/js/plugins/perfect-scrollbar.min.js')}}"></script>
       <script src="{{asset('admin/assets/js/plugins/smooth-scrollbar.min.js')}}"></script>
       <script src="{{asset('admin/assets/js/plugins/chartjs.min.js')}}"></script>
-            @yield('script') 
+
+       @yield('script') 
    
       <script>
       var ctx = document.getElementById("chart-bars").getContext("2d");
@@ -588,6 +590,7 @@
       crossorigin="anonymous"></script>
        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
       <script src="{{ asset('admin/assets/base/base.js') }}"></script>
+      @yield('js') 
 </body>
 
 </html>

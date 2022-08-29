@@ -26,7 +26,7 @@
                   <td>{{$user -> id}}</td>
                   <td>{{$user -> name}}</td>
                   <td>
-                        <img src="{{ $user->images->count() > 0 ? asset('upload/users/' . $user->images->first()->url) : 'upload/users/default.jpg' }}"  width="200px" height="200px" alt="">
+                        <img src="{{ $user->images->count() > 0 ? asset('upload/' . $user->images->first()->url) : 'upload/default.jpg' }}"  width="200px" height="200px" alt="">
                   </td>
                   <td>{{$user -> email}}</td>
                   <td>{{$user -> phone}}</td>

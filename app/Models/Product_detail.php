@@ -12,7 +12,6 @@ class Product_detail extends Model
     protected $fillable = [
         'product_id',
         'size',
-        'color',
         'quantity',
     ];
 }

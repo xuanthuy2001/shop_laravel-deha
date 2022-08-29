@@ -6,7 +6,7 @@ use Image;
 
 trait HandleImageTrait
 {
-    protected $path = 'upload/users/';
+    protected $path = 'upload/';
 
     public function veryfy($request)
     {
@@ -26,20 +26,20 @@ trait HandleImageTrait
 
     public function updateImage($request, $currentImage)
     {
+      
         if($this->veryfy($request))
-        {
+        {  
             $this->deleteImage($currentImage);
 
             return $this->saveImage($request);
         }
-
         return $currentImage;
     }
     public function deleteImage($imageName)
     {
         if($imageName && file_exists($this->path .$imageName))
         {
-            unlink($this->path .$imageName);
+            @unlink($this->path .$imageName);
         }
     }
 

@@ -19,8 +19,8 @@
                      <div class="row">
                         <div class="col-3"></div>
                         <div class="col-9">
-                              <img src="{{ $user->images ? asset('upload/users/' . $user->images->first()->url) : 'upload/users/default.png' }}"
-                              style="width: 250px"  id="show-image" alt="">
+                              <img style="width: 250px" src="{{ $user->images ? asset('upload/' . $user->images->first()->url) : 'upload/default.jpg' }}"
+                              id="show-image" alt="">
                         </div>
                      </div>
                   </div>
@@ -135,7 +135,7 @@
                         @endforeach
                   </div>
             </div>
-            <button type="submit" class="btn btn-primary"> create</button>
+            <button type="submit" class="btn btn-primary">Update</button>
       </form>
 </div>
 @endsection
