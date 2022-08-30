@@ -36,6 +36,7 @@ class CategoryController extends Controller
         {
             $dataCreate = $request->all();
             $category = $this -> category -> create($dataCreate);
+         
             return redirect() -> route('categories.index')->with('message','create new category:'.$category -> name . " success");
         }
         public function edit($id)

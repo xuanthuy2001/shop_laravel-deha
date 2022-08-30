@@ -27,6 +27,6 @@ class Category extends Model
     }
     public function getParents()
     {
-        return Category::wherenull('parent_id') -> get(['id','name']);
+        return Category::whereNull('parent_id')->with('childrent')->get(['id', 'name']); 
     }
 }
