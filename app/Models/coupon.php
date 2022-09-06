@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class coupon extends Model
 {
     use HasFactory;
+    protected $table = 'coupons';
     protected $fillable = [
         'name',
         'type',
