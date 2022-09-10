@@ -21,8 +21,9 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request,$category_id)
+    public function index(Request $request, $category_id)
     {
+
         $products =  $this->product->getBy($request->all(), $category_id);
         $categories = $this -> category -> getParents();
         return view('client.products.index', [
@@ -60,7 +61,6 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-
         $categories = $this -> category -> getParents();
         $product = $this->product->with('details')->findOrFail($id);
         return view('client.products.detail', [

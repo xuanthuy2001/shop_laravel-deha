@@ -92,7 +92,7 @@
                         </a>
                         <a href="" class="btn border">
                               <i class="fas fa-shopping-cart text-primary"></i>
-                              <span class="badge">0</span>
+                              <span class="badge">{{ $countProductInCart }}</span>
                         </a>
                   </div>
             </div>
@@ -117,11 +117,10 @@
                                                    <a href="" class="nav-link" data-toggle="dropdown">{{ $item -> name }} <i
                                                          class="fa fa-angle-down float-right mt-1"></i>
                                                    </a>
-
                                                    <div class="dropdown-menu position-absolute bg-secondary border-0 rounded-0 w-100 m-0">
                                                          @foreach($item->childrent as $childCategory)
                                                             <a href="{{ route('client.products.index',[
-                                                                  'product_id' => $item ->id
+                                                                  'product_id' => $childCategory ->id
                                                                ]) }}" class="dropdown-item">{{ $childCategory->name }}</a>
                                                          @endforeach
                                                    </div>

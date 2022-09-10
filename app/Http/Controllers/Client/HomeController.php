@@ -28,7 +28,6 @@ class HomeController extends Controller
     {
         $products = $this -> product  -> paginate(8);
         $categories = $this -> category -> getParents();
-        // dd($categories);
         $title = "book store";
         return view('client.home.index',[
             'products' => $products,

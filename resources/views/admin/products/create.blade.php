@@ -35,7 +35,7 @@
                         <div class="col-4">
                             <div class="input-group input-group-static mb-4">
                                 <label>Price</label>
-                                <input type="number" step="0.1" value="{{ old('price') }}" name="price" class="form-control">
+                                <input maxlength="10" type="number" step="0.1" value="{{ old('price') }}" name="price" class="form-control">
                                 @error('price')
                                     <span class="text-danger"> {{ $message }}</span>
                                 @enderror
@@ -45,7 +45,7 @@
                         <div class="col-4">
                             <div class="input-group input-group-static mb-4">
                                 <label>Sale</label>
-                                <input type="number" value="0" value="{{ old('sale') }}" name="sale" class="form-control">
+                                <input maxlength="10" type="number" value="0" value="{{ old('sale') }}" name="sale" class="form-control">
                                 @error('sale')
                                     <span class="text-danger"> {{ $message }}</span>
                                 @enderror

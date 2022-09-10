@@ -25,6 +25,7 @@ class ProductController extends Controller
     public function index()
     {
         $products =$this->product->latest('id')->paginate(3);
+       
         // compact truyền dữ liệu sang view
         return view('admin.products.index', compact('products'));
  

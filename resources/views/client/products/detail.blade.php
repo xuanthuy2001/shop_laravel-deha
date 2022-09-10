@@ -16,7 +16,7 @@
 
     <!-- Shop Detail Start -->
     <div class="container-fluid py-5">
-        <form action="#" method="POST" class="row px-xl-5">
+        <form action="{{ route('client.carts.add') }}" method="POST" class="row px-xl-5">
             @csrf
             <input type="hidden" name="product_id" value="{{ $product->id }}">
             <div class="col-lg-5 pb-5">
