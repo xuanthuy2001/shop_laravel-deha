@@ -9,6 +9,8 @@ use App\Models\Product;
 use App\Models\cart_product;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\Cart\CartResource; 
+use Illuminate\Http\Response;
 
 class CartController extends Controller
 {
@@ -26,10 +28,42 @@ class CartController extends Controller
         $this->coupon = $coupon;
         $this->order = $order;
     }
+    public function updateQuantityProduct(Request $request, $id)
+    {
+         $cartProduct =  $this->cartProduct->find($id);
+         $dataUpdate = $request->all();
+         if($dataUpdate['product_quantity'] < 1 ) {
+            $cartProduct->delete();
+        } else {
+            $cartProduct->update($dataUpdate);
+        }
 
+        $cart =  $cartProduct->cart;
+
+        return response()->json([
+            'product_cart_id' => $id,
+            'cart' => new CartResource($cart),
+            'remove_product' => $dataUpdate['product_quantity'] < 1,
+            'cart_product_price' => $cartProduct->total_price
+        ], Response::HTTP_OK);
+    }
+
+    public function removeProductInCart($id)
+    {
+         $cartProduct =  $this->cartProduct->find($id);
+         $cartProduct->delete();
+         $cart =  $cartProduct->cart;
+         return response()->json([
+             'product_cart_id' => $id,
+             'cart' => new CartResource($cart)
+         ], Response::HTTP_OK);
+    }
     public function index()
     {
-        //
+            $carts = $this->cart -> firtOrCreateBy(auth()->user()->id)->load('products');
+            return view('client.carts.index',[
+                'carts' => $carts
+            ]);
     }
 
     

@@ -8,16 +8,17 @@ use Illuminate\Database\Migrations\Migration;
 
 class RefactorFieldInCartProductsTable extends Migration
 {
+    
     public function up()
     {
-      if(!Schema::hasColumn('cart_products', 'cart_id'))
+        if(!Schema::hasColumn('cart_products', 'cart_id'))
         Schema::table('cart_products', function (Blueprint $table) {
             $table->foreignIdFor(Cart::class, 'cart_id')->constrained()->onDelete('cascade');
         });
 
         if(Schema::hasColumn('cart_products', 'user_id'))
         Schema::table('cart_products', function (Blueprint $table) {
-            $table->dropForeign(User::class);
+            $table->dropForeign(['user_id']);
             $table->dropColumn('user_id');
         });
 
@@ -30,19 +31,20 @@ class RefactorFieldInCartProductsTable extends Migration
    
     public function down()
     {
-      if(Schema::hasColumn('cart_products', 'cart_id'))
-      Schema::table('cart_products', function (Blueprint $table) {
-          $table->dropColumn('cart_id');
-      });
+        if(Schema::hasColumn('cart_products', 'cart_id'))
+        Schema::table('cart_products', function (Blueprint $table) {
+            $table->dropForeign(['cart_id']);
+            $table->dropColumn('cart_id');
+        });
 
-      if(!Schema::hasColumn('cart_products', 'user_id'))
-      Schema::table('cart_products', function (Blueprint $table) {
-          $table->foreignIdFor(Cart::class);
-      });
+        if(!Schema::hasColumn('cart_products', 'user_id'))
+        Schema::table('cart_products', function (Blueprint $table) {
+            $table->foreignIdFor(Cart::class);
+        });
 
-      if(!Schema::hasColumn('cart_products', 'product_color'))
-      Schema::table('cart_products', function (Blueprint $table) {
-          $table->string('product_color');
-      });
+        if(!Schema::hasColumn('cart_products', 'product_color'))
+        Schema::table('cart_products', function (Blueprint $table) {
+            $table->string('product_color');
+        });
     }
 }

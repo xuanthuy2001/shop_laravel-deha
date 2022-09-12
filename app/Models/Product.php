@@ -44,14 +44,14 @@ class Product extends Model
         return $this->whereHas('categories', fn($q) => $q->where('category_id', $categoryId))->paginate(10);
     }
 
+    public function getImagePathAttribute()
+    {
+        return  asset($this -> images-> count() >0 ? 'upload/'.$this -> images ->first()-> url : 'upload/default.jpg');
+    }
+    public function getSalePriceAttribute()
+    {
+        return  $this -> attributes['sale'] ? $this -> attributes['price'] - ($this -> attributes['sale']*0.01 * $this -> attributes['price']) : 0 ;
+    }
 
-    // public function salePrice() : Attribute
-    // {
-    //     return Attribute::make(
-    //         get: fn() => $this->attributes['sale']
-    //             ? $this->attributes['price'] - ($this->attributes['sale'] * 0.01  * $this->attributes['price'])
-    //             : 0
-    //     );
-    // }
    
 }

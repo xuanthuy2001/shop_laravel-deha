@@ -18,6 +18,9 @@ Route::get('/product-detail/{id}', [ClientProductController::class, 'show'])->na
 
 Route::middleware('auth')->group(function(){
     Route::post('add_to_cart',[CartController::class, 'store']) -> name('client.carts.add');
+    Route::get('carts',[CartController::class, 'index']) -> name('client.carts.index');
+    Route::post('update-quantity-product-in-cart/{cart_product_id}',[CartController::class, 'updateQuantityProduct']) -> name('client.carts.update_product_quantity');
+    Route::post('remove-product-in-cart/{cart_product_id}', [CartController::class, 'removeProductInCart'])->name('client.carts.remove_product');
 });
 
 Route::middleware('auth')->group(function(){
