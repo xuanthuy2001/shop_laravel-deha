@@ -2,6 +2,12 @@
 @extends('client.layouts.app')
 @section('title', 'Cart')
 @section('content') <div class="row px-xl-5">
+    @if (session('message'))
+              <div class="row">
+                  <h3 class="text-danger">{{ session('message') }}</h3>
+              </div>
+          @endif
+
     <div class="col-lg-8 table-responsive mb-5">
         <table class="table table-bordered text-center mb-0">
             <thead class="bg-secondary text-dark">
@@ -76,7 +82,7 @@
         </table>
     </div>
     <div class="col-lg-4">
-        <form class="mb-5" method="POST">
+        <form class="mb-5" method="POST" action="{{ route('client.carts.apply_coupon') }}">
             @csrf
             <div class="input-group">
                 <input type="text" class="form-control p-4" value="{{ Session::get('coupon_code') }}"
@@ -111,7 +117,7 @@
                     <h5 class="font-weight-bold">Total</h5>
                     <h5 class="font-weight-bold total-price-all"></h5>
                 </div>
-                <a class="btn btn-block btn-primary my-3 py-3">Proceed
+                <a href="{{ route('client.checkout.index') }}"  class="btn btn-block btn-primary my-3 py-3">Proceed
                     To Checkout</a>
             </div>
         </div>
@@ -124,6 +130,17 @@
 
 <script>
     $(function() {
+
+        getTotalValue()
+
+        function getTotalValue() {
+            let total = $('.total-price').data('price')
+            let couponPrice = $('.coupon-div')?.data('price') ?? 0;
+            $('.total-price-all').text(`$${total - couponPrice}`)
+
+        }
+
+
         $(document).on('click', '.btn-remove-product', function(e) {
             let url = $(this).data('action')
             confirmDelete()
@@ -135,6 +152,7 @@
                         $('.total-price').text(`$${cart.total_price}`).data('price', cart
                             .product_count)
                         $(`#row-${cartProductId}`).remove();
+                        getTotalValue()
                     })
                 })
                 .catch(function() {
@@ -158,6 +176,7 @@
                 } else {
                     $(`#cartProductPrice${cartProductId}`).html(
                         `$${res.cart_product_price}`);
+                        getTotalValue()
                 }
                 $('.total-price').text(`$${cart.total_price}`)
                 Swal.fire({
