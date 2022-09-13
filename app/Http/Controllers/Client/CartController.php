@@ -168,8 +168,8 @@ class CartController extends Controller
     }
     public function checkout()
     {
+        
         $cart = $this->cart->firtOrCreateBy(auth()->user()->id)->load('products');
-
         return view('client.carts.checkout', compact('cart'));
     }
     public function processCheckout(CreateOrderRequest $request)

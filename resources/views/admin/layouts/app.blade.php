@@ -23,6 +23,7 @@
       <title>
             @yield('title', 'dashboard')
       </title>
+      <meta name="csrf-token" content="{{ csrf_token() }}">
       <!--     Fonts and icons     -->
       <link rel="stylesheet" type="text/css"
             href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900|Roboto+Slab:400,700" />
@@ -588,7 +589,7 @@
       <script src="{{asset('admin/assets/js/material-dashboard.min.js?v=3.0.2')}}"></script>
       <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
       crossorigin="anonymous"></script>
-       <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+      <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
       <script src="{{ asset('admin/assets/base/base.js') }}"></script>
       @yield('js') 
 </body>
