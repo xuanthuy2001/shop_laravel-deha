@@ -21,6 +21,7 @@
                               <span class="nav-link-text ms-1">Dashboard</span>
                         </a>
                   </li>
+                  @hasrole('super-admin')
                   <li class="nav-item">
                         <a class="nav-link text-white  {{ request() -> routeIs('roles.*')? 'active bg-gradient-primary' : '' }} " href="{{route('roles.index')}}">
                               <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
@@ -29,6 +30,8 @@
                               <span class="nav-link-text ms-1">Role</span>
                         </a>
                   </li>
+                  @endhasrole
+                  @can('show-user')
                   <li class="nav-item">
                         <a class="nav-link text-white  {{ request() -> routeIs('users.*')? 'active bg-gradient-primary' : '' }}"  href="{{route('users.index')}}">
                               <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
@@ -37,6 +40,8 @@
                               <span class="nav-link-text ms-1">User</span>
                         </a>
                   </li>
+                    @endcan
+                    @can('show-product')
                   <li class="nav-item">
                         <a class="nav-link text-white  {{ request() -> routeIs('products.*')? 'active bg-gradient-primary' : '' }}" href="{{route('products.index')}}">
                               <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
@@ -45,6 +50,8 @@
                               <span class="nav-link-text ms-1">Product</span>
                         </a>
                   </li>
+                  @endcan
+                  @can('show-category')
                   <li class="nav-item">
                         <a class="nav-link text-white  {{ request() -> routeIs('categories.*')? 'active bg-gradient-primary' : '' }}" href="{{route('categories.index')}}">
                               <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
@@ -53,15 +60,19 @@
                               <span class="nav-link-text ms-1">Category</span>
                         </a>
                   </li>
-                  <li class="nav-item">
-                        <a class="nav-link text-white  {{ request() -> routeIs('coupons.*')? 'active bg-gradient-primary' : '' }}" href="{{route('coupons.index')}}">
-                              <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                                    <i class="material-icons opacity-10">format_textdirection_r_to_l</i>
-                              </div>
-                              <span class="nav-link-text ms-1">Coupon</span>
-                        </a>
-                  </li>
+                  @endcan
 
+                  @can('show-coupon')
+                        <li class="nav-item">
+                              <a class="nav-link text-white  {{ request() -> routeIs('coupons.*')? 'active bg-gradient-primary' : '' }}" href="{{route('coupons.index')}}">
+                                    <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                                          <i class="material-icons opacity-10">format_textdirection_r_to_l</i>
+                                    </div>
+                                    <span class="nav-link-text ms-1">Coupon</span>
+                              </a>
+                        </li>
+                   @endcan
+                   @can('list-order')
                   <li class="nav-item">
                         <a class="nav-link text-white  {{ request() -> routeIs('orders.*')? 'active bg-gradient-primary' : '' }}" href="{{route('admin.orders.index')}}">
                               <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
@@ -70,6 +81,7 @@
                               <span class="nav-link-text ms-1">Order</span>
                         </a>
                   </li>
+                  @endcan
 
             </ul>
       </div>
