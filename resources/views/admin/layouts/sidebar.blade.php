@@ -7,7 +7,7 @@
                   target="_blank">
                   <img src="{{asset('admin/assets/img/logo-ct.png')}}" class="navbar-brand-img h-100')}}"
                         alt="main_logo">
-                  <span class="ms-1 font-weight-bold text-white">Material Dashboard 2</span>
+                  <span class="ms-1 font-weight-bold text-white">Hello -{{ auth()->user()->name  }}</span>
             </a>
       </div>
       <hr class="horizontal light mt-0 mb-2">

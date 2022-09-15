@@ -89,7 +89,7 @@ Route::middleware('auth')->group(function(){
         Route::get('/{coupon}/edit', 'edit')->name('edit')->middleware('permission:update-coupon');
     });
 
-    Route::get('orders', [AdminOrderController::class, 'index'])->name('admin.orders.index')->middleware('list-order');
-    Route::post('update-status/{id}', [AdminOrderController::class, 'updateStatus'])->name('admin.orders.update_status')->middleware('list-order');
+    Route::get('orders', [AdminOrderController::class, 'index'])->name('admin.orders.index')->middleware('permission:list-order');
+    Route::post('update-status/{id}', [AdminOrderController::class, 'updateStatus'])->name('admin.orders.update_status')->middleware('permission:list-order');
 
 });

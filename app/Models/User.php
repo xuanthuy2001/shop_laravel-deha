@@ -15,6 +15,8 @@ class User extends Authenticatable
     use  HasFactory, Notifiable;
     use  HandleImageTrait , HasRoles;
 
+    protected $table = 'users';
+    
     protected $fillable = [
         'name',
         'email',
@@ -33,5 +35,10 @@ class User extends Authenticatable
     public function images()
     {
         return $this->morphMany(Image::class, 'imageable');
+    }
+
+    public function getImagePathAttribute()
+    {
+        return asset($this -> images -> count() > 0 ? 'upload/' .$this -> images -> first() -> url : 'upload/default.jpg');
     }
 }

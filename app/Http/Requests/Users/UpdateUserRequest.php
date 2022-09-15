@@ -25,11 +25,11 @@ class UpdateUserRequest extends FormRequest
     {
         return [
             'name' => 'required',
-            'phone' => 'required|unique:users,phone,'.$this->user,
+            'phone' => 'required',
             'gender' => 'required',
             'image' => 'nullable|image|mimes:png,jpg,PNG,jpec',
             'password' => 'nullable|min:6',
-            'email'=> 'unique:users,email,'.$this->user,
+            'email'=>'required',
         ];
     }
 }
