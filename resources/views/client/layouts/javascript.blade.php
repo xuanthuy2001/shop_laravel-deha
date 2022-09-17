@@ -10,6 +10,7 @@
       <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
       <script src="{{ asset('client/lib/easing/easing.min.js') }}"></script>
       <script src="{{ asset('client/lib/owlcarousel/owl.carousel.min.js') }}"></script>
+      
   
       <!-- Contact Javascript File -->
       <script src="{{ asset('client/mail/jqBootstrapValidation.min.js') }}"></script>
@@ -20,6 +21,27 @@
           crossorigin="anonymous" referrerpolicy="no-referrer"></script>
       <!-- Template Javascript -->
       <script src="{{ asset('client/js/main.js') }}"></script>
+      
+      <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+      <script>
+        var availableTags = '';
+        $.ajax({
+          method: "GET",
+          url: '/product-list',
+          success: function(response) {
+                 console.log(response);
+                 startAutocomplete(response);
+          }
+        });
+        function startAutocomplete(availableTags) {
+            $( "#searchInput" ).autocomplete({
+                source: availableTags
+              });
+        } 
+
+       
+      </script>
+
       <script type="text/javascript">
           $.ajaxSetup({
               headers: {

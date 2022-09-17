@@ -16,7 +16,10 @@ use App\Http\Controllers\Client\OrderController;
 use App\Http\Controllers\Client\ProductController as ClientProductController;
 
 Route::get('/', [HomeController::class, 'index'])->name('client.home');
+Route::get('/product-list', [HomeController::class, 'productListAjax'])->name('client_productListAjax');
+Route::post('/search-product', [HomeController::class, 'search_product'])->name('searchProduct');
 Route::get('/product/{product_id}', [ClientProductController::class, 'index'])->name('client.products.index');
+
 Route::get('/product-detail/{id}', [ClientProductController::class, 'show'])->name('client.products.show');
 
 Route::middleware('auth')->group(function(){

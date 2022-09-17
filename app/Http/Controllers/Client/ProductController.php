@@ -24,7 +24,6 @@ class ProductController extends Controller
      */
     public function index(Request $request, $category_id)
     {
-        
         $products =  $this->product->getBy($request->all(), $category_id);
         $categories = $this -> category -> getParents();
         return view('client.products.index', [
@@ -32,12 +31,8 @@ class ProductController extends Controller
             'categories' => $categories,
         ]);
     }
+  
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         //
@@ -103,4 +98,6 @@ class ProductController extends Controller
     {
         //
     }
+
+   
 }

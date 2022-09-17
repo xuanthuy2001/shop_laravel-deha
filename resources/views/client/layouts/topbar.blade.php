@@ -37,13 +37,18 @@
                 </a>
           </div>
           <div class="col-lg-6 col-6 text-left">
-                <form action="">
+                <form action="{{ route("searchProduct") }}" method="POST">
+                  @csrf
                       <div class="input-group">
-                            <input onkeyup="myFunction()" type="text" class="form-control " id ="searchInput" placeholder="Search for products">
+                            <input 
+                              name="productName"
+                            onkeyup="myFunction()" type="search" class="form-control " id ="searchInput" placeholder="Search for products">
                             <div class="input-group-append">
-                                  <span class="input-group-text bg-transparent text-primary">
-                                        <i class="fa fa-search"></i>
-                                  </span>
+                                 <button style="border: none ;  outline: none;"  >
+                                    <span class="input-group-text bg-transparent text-primary">
+                                          <i class="fa fa-search"></i>
+                                    </span>
+                                 </button>
                             </div>
                       </div>
                 </form>
