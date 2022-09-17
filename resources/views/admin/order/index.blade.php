@@ -52,7 +52,6 @@
             </tr>
             @endforeach
       </table>
-      {{ $orders->links() }}
 </div>
 @endsection
 @section('js')

@@ -16,7 +16,7 @@ class UserController extends Controller
     protected $user;
     protected $role;
 
-    public function __construct(User $user,Role $role)
+    public function __construct(User $user, Role $role)
     {
         $this -> user = $user;
         $this -> role = $role;
@@ -72,8 +72,7 @@ class UserController extends Controller
         $dataUpdate = $request->except('password');
         $user =  $this->user->findOrFail($id)->load('roles');
 
-        if($request->password)
-        {
+        if ($request->password) {
             $dataCreate['password'] = Hash::make($request->password);
         }
         $currentImage =  $user->images ? $user->images->first()->url : '';

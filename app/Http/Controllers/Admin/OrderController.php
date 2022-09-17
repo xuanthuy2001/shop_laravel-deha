@@ -19,18 +19,16 @@ class OrderController extends Controller
     public function index()
     {
         $orders = $this -> order -> getWithPaginateBy(auth() -> user() ->  id);
-        return view('admin.order.index',[
+        return view('admin.order.index', [
             'orders' => $orders
         ]);
     }
-    public function updateStatus(Request $request ,$id)
+    public function updateStatus(Request $request, $id)
     {
         $order =  $this->order->findOrFail($id);
         $order->update(['status' => $request->status]);
         return  response()->json([
             'message' => 'success'
         ], Response::HTTP_OK);
-
     }
-    
 }

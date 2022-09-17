@@ -17,9 +17,9 @@ class Cart extends Model
     ];
     public function products()
     {
-        return $this-> hasMany(cart_product::class,'cart_id');
+        return $this-> hasMany(cart_product::class, 'cart_id');
     }
-    public function  getBy($userId)
+    public function getBy($userId)
     {
         
         return Cart::whereUserId($userId)->first();
@@ -27,8 +27,7 @@ class Cart extends Model
     public function firtOrCreateBy($userId)
     {
         $cart = $this->getBy($userId);
-        if($cart===null)
-        {
+        if ($cart===null) {
             $cart = Cart::Create(['user_id' => $userId]);
         }
         return $cart;
@@ -46,5 +45,4 @@ class Cart extends Model
             return $carry + $price;
         }, 0) : 0;
     }
-
 }

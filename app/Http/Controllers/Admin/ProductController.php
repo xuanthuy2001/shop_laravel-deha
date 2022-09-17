@@ -28,11 +28,10 @@ class ProductController extends Controller
        
         // compact truyền dữ liệu sang view
         return view('admin.products.index', compact('products'));
- 
     }
 
     public function create()
-    {  
+    {
         $categories = $this->category->get(['id','name']);
         return view('admin.products.create', compact('categories'));
     }
@@ -46,8 +45,7 @@ class ProductController extends Controller
         $product->images()->create(['url' => $dataCreate['image']]);
         $product->assignCategory($dataCreate['category_ids']);
         $sizeArray = [];
-        foreach($sizes as $size)
-        {
+        foreach ($sizes as $size) {
             $sizeArray[] = ['size' => $size->size, 'quantity' => $size->quantity, 'product_id' => $product->id];
         }
         $this->productDetail->insert($sizeArray);
@@ -86,13 +84,11 @@ class ProductController extends Controller
         $product->assignCategory($dataUpdate['category_ids']);
         $sizeArray = [];
        
-        foreach($sizes as $size)
-        {
+        foreach ($sizes as $size) {
             $sizeArray[] = ['size' => $size->size, 'quantity' => $size->quantity, 'product_id' => $product->id];
         }
         $product->details()->insert($sizeArray);
         return redirect()->route('products.index')->with(['message' => 'Update product success']);
-   
     }
     public function destroy($id)
     {

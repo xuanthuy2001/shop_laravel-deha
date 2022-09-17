@@ -18,7 +18,7 @@ class CounponController extends Controller
     public function index()
     {
         $coupons = $this -> coupon -> latest('id') ->paginate(3);
-        return view('admin.coupons.index',[
+        return view('admin.coupons.index', [
             'coupons' => $coupons
          ]);
     }
@@ -38,7 +38,7 @@ class CounponController extends Controller
     {
         $dataCreate = $request->all();
         $coupon = $this -> coupon -> create($dataCreate);
-        return redirect() -> route('coupons.index')->with('message','create new coupon:'.$coupon -> name . " success");
+        return redirect() -> route('coupons.index')->with('message', 'create new coupon:'.$coupon -> name . " success");
     }
 
     
@@ -51,7 +51,7 @@ class CounponController extends Controller
     public function edit($id)
     {
         $coupon = $this -> coupon -> findOrFail($id);
-        return view('admin.coupons.edit',[
+        return view('admin.coupons.edit', [
             'coupon' => $coupon,
          ]);
     }
@@ -66,7 +66,7 @@ class CounponController extends Controller
 
         $coupon->update($dataUpdate);
 
-        return redirect() -> route('coupons.index')->with('message','Update new coupon:'.$coupon -> name . " success");
+        return redirect() -> route('coupons.index')->with('message', 'Update new coupon:'.$coupon -> name . " success");
     }
 
 
@@ -74,6 +74,6 @@ class CounponController extends Controller
     {
         $coupon=$this->coupon->findOrFail($id);
         $coupon->delete();
-        return redirect() -> route('coupons.index')->with('message','Delete success');
+        return redirect() -> route('coupons.index')->with('message', 'Delete success');
     }
 }

@@ -21,7 +21,7 @@ class RoleController extends Controller
     }
     public function create()
     {
-        // groupBy dùng để nhóm kết quả của truy vấn khi cùng 1 group 
+        // groupBy dùng để nhóm kết quả của truy vấn khi cùng 1 group
         $permissions = Permission::all()->groupBy('group');
         return view('admin.roles.create', compact('permissions'));
     }

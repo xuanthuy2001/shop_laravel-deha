@@ -31,20 +31,17 @@ class CartController extends Controller
         $this->coupon = $coupon;
         $this->order = $order;
     }
-    public function applyCoupon(Request $request ) 
+    public function applyCoupon(Request $request)
     {
         $name = $request->input('coupon_code');
        
         $coupon =  $this->coupon->firstWithExperyDate($name, auth()->user()->id);
-        if($coupon)
-        {
+        if ($coupon) {
             $message = 'Áp Mã giảm giá thành công !';
             Session::put('coupon_id', $coupon->id);
             Session::put('discount_amount_price', $coupon->value);
-            Session::put('coupon_code' , $coupon->name);
-
-        }else{
-
+            Session::put('coupon_code', $coupon->name);
+        } else {
             Session::forget(['coupon_id', 'discount_amount_price', 'coupon_code']);
             $message = 'Mã giảm giá không tồn tại hoặc hết hạn!';
         }
@@ -52,14 +49,13 @@ class CartController extends Controller
         return redirect()->route('client.carts.index')->with([
             'message' => $message,
         ]);
-
     }
 
     public function updateQuantityProduct(Request $request, $id)
     {
          $cartProduct =  $this->cartProduct->find($id);
          $dataUpdate = $request->all();
-         if($dataUpdate['product_quantity'] < 1 ) {
+        if ($dataUpdate['product_quantity'] < 1) {
             $cartProduct->delete();
         } else {
             $cartProduct->update($dataUpdate);
@@ -88,7 +84,7 @@ class CartController extends Controller
     public function index()
     {
             $carts = $this->cart -> firtOrCreateBy(auth()->user()->id)->load('products');
-            return view('client.carts.index',[
+            return view('client.carts.index', [
                 'carts' => $carts
             ]);
     }
@@ -101,11 +97,11 @@ class CartController extends Controller
 
     public function store(Request $request)
     {
-        if($request->product_size) {
+        if ($request->product_size) {
             $product = $this->product->findOrFail($request->product_id);
             $cart = $this->cart->firtOrCreateBy(auth()->user()->id);
             $cartProduct = $this->cartProduct->getBy($cart->id, $product->id, $request->product_size);
-            if($cartProduct) {
+            if ($cartProduct) {
                 $quantity = $cartProduct->product_quantity;
                 $cartProduct->update(['product_quantity' => ($quantity + $request->product_quantity)]);
             } else {
@@ -117,9 +113,9 @@ class CartController extends Controller
                 $this->cartProduct->create($dataCreate);
             }
             return back()->with(['message' => 'Thêm thành công']);
-           } else {
+        } else {
             return back()->with(['message' => 'Bạn chưa chọn size']);
-           }
+        }
     }
 
     /**
@@ -174,22 +170,21 @@ class CartController extends Controller
     }
     public function processCheckout(CreateOrderRequest $request)
     {
+       
         $dataCreate = $request->all();
+       
         $dataCreate['user_id'] = auth()->user()->id;
         $dataCreate['status'] = 'pending';
         $this->order->create($dataCreate);
         $couponID = Session::get('coupon_id');
-        if($couponID)
-        {
+        if ($couponID) {
             $coupon =  $this->coupon->find(Session::get('coupon_id'));
-            if($coupon)
-            {
+            if ($coupon) {
                 $coupon->users()->attach(auth()->user()->id, ['value' => $coupon->value]);
             }
         }
         $cart = $this->cart->firtOrCreateBy(auth()->user()->id);
         $cart->products()->delete();
         Session::forget(['coupon_id', 'discount_amount_price', 'coupon_code']);
-
     }
 }

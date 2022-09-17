@@ -10,11 +10,12 @@ use App\Models\Category;
 class ProductController extends Controller
 {
 
-    protected $product; 
+    protected $product;
        protected $category;
     public function __construct(Product $product, Category $category)
     {
-        $this->product = $product; $this ->  category = $category ;
+        $this->product = $product;
+        $this ->  category = $category ;
     }
     /**
      * Display a listing of the resource.
@@ -23,7 +24,7 @@ class ProductController extends Controller
      */
     public function index(Request $request, $category_id)
     {
-
+        
         $products =  $this->product->getBy($request->all(), $category_id);
         $categories = $this -> category -> getParents();
         return view('client.products.index', [

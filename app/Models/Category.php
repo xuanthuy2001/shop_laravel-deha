@@ -15,11 +15,11 @@ class Category extends Model
 
     public function parent()
     {
-        return $this -> belongsTo(Category::class,'parent_id');
+        return $this -> belongsTo(Category::class, 'parent_id');
     }
     public function childrent()
     {
-        return $this -> hasMany(Category::class,'parent_id');
+        return $this -> hasMany(Category::class, 'parent_id');
     }
     public function getParentNameAttribute()
     {
@@ -27,6 +27,6 @@ class Category extends Model
     }
     public function getParents()
     {
-        return Category::whereNull('parent_id')->with('childrent')->get(['id', 'name']); 
+        return Category::whereNull('parent_id')->with('childrent')->get(['id', 'name']);
     }
 }
