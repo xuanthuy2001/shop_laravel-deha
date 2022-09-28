@@ -29,7 +29,6 @@
           method: "GET",
           url: '/product-list',
           success: function(response) {
-                 console.log(response);
                  startAutocomplete(response);
           }
         });
@@ -38,8 +37,6 @@
                 source: availableTags
               });
         } 
-
-       
       </script>
 
       <script type="text/javascript">

@@ -23,7 +23,7 @@ class HomeController extends Controller
         $this ->  category = $category ;
     }
 
-    public function index()
+    public function index(Request $request)
     {   
         $products = $this -> product  -> paginate(8);
         $categories = $this -> category -> getParents();
@@ -54,14 +54,23 @@ class HomeController extends Controller
             $product = Product::where("name" , "LIKE" , "%{$search_product}%")->first();
             if($product)
             {
-                return redirect() -> route('client.products.show', ['id' => $product->id]);
+                return redirect() -> route('client.products.show', ['id' => $product->id])->with(
+                    [
+                        'succPro' => $search_product,
+                    ]
+                );;
             }
             else{
-                return redirect() -> back();
+                return redirect() -> route('client.home')->with(
+                    [
+                        'message' => 'sản phẩm không tồn tại',
+                        'errPro' => $search_product,
+                    ]
+                );
             }
         }
         else{
-            return redirect() -> back();
+            return redirect()  -> route('client.home');
         }
     }
 }

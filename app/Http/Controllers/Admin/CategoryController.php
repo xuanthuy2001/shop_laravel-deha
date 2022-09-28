@@ -18,7 +18,7 @@ class CategoryController extends Controller
 
     public function index()
     {
-        $categories = $this->category ->paginate(3);
+        $categories = $this->category ->paginate(15);
         // dd($categories[1]->parent->name);
         return view('admin.categories.index', [
         'categories' => $categories
@@ -35,6 +35,7 @@ class CategoryController extends Controller
     public function store(CreateCategoryRequest  $request)
     {
         $dataCreate = $request->all();
+       
         $category = $this -> category -> create($dataCreate);
          
         return redirect() -> route('categories.index')->with('message', 'create new category:'.$category -> name . " success");

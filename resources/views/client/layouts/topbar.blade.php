@@ -37,6 +37,9 @@
                 </a>
           </div>
           <div class="col-lg-6 col-6 text-left">
+
+                  
+                 
                 <form action="{{ route("searchProduct") }}" method="POST">
                   @csrf
                       <div class="input-group">
@@ -52,6 +55,17 @@
                             </div>
                       </div>
                 </form>
+                @if(Session::has('succPro'))
+                        <p class="alert alert-info">{{ Session::get('succPro') }}</p>
+                  @endif
+                  @if (session('message'))
+                        <div class="mb-search-result"><div class="page-title">
+                         <h1>Kết quả tìm kiếm với: {{ session('errPro') }}</h1>
+                        </div>
+                         <p class="note-msg">{{ session('message') }}</p>     
+                        </div> 
+                  @endif
+  
           </div>
           <div class="col-lg-3 col-6 text-right">
                 <a href="" class="btn border">

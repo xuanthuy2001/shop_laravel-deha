@@ -24,6 +24,7 @@ class ProductController extends Controller
      */
     public function index(Request $request, $category_id)
     {
+        // dd($request -> get('filter_price'));
         $products =  $this->product->getBy($request->all(), $category_id);
         $categories = $this -> category -> getParents();
         return view('client.products.index', [

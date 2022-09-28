@@ -151,7 +151,10 @@
 
     </script>
 
- 
+    <script>
+      const size =  document.getElementById("AddSizeModalBody");
+        console.log(size);
+    </script>
 
 @endsection
 
@@ -161,7 +164,19 @@
     crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="{{ asset('plugin/ckeditor5-build-classic/ckeditor.js') }}"></script>
     <script>
+      
         let sizes = @json($product->details);
+
+        rederSizes(sizes);
+        appendSizesToForm();
+
+        function renderSizes(sizes)
+        {
+            for(let zize of sizes)
+            {
+                renderSizes(zize);
+            }
+        }
         </script>
     <script src="{{ asset('admin/assets/js/product/product.js') }}"></script>
 @endsection
