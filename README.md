@@ -1,4 +1,4 @@
-Sản phẩm vẫn đang hoàn thiện 
+<h1>Sản phẩm vẫn đang hoàn thiện  </h1>
 Setup:
     copy .env.example .env
 
