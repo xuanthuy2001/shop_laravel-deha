@@ -8,6 +8,9 @@ Setup:
     php artisan db:seed --class=RoleDatabaseSeeder
     php artisan cache:clear
     php artisan storage:link
+    
+    => sau đó bạn đăng nhập với tài khoản superAdmin: admin@gmail.com , mật khẩu: 123456a@
+    
 
 Định hướng tiếp theo: 
     Tạo lại trang đăng nhập 
