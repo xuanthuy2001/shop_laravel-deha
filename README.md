@@ -13,8 +13,10 @@ Setup:
     
 
 Định hướng tiếp theo: 
+
     Tạo lại trang đăng nhập 
     Đăng nhập sử dụng các mạng xã hội:google, github, facebook
     Chức năng gửi mail: tạo đơn hàng, gửi mail khi lấy laị mật khẩu 
     Chức năng export excel 
+    
 chức năng chính: giỏ hàng, đặt hàng, đăng ký đăng nhập 
