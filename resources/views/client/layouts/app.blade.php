@@ -40,8 +40,9 @@
                  .limit-text{
                   color: blue
                  }
+                 @yield('css');
       </style>
-            
+ 
 </head>
 
 <body>

@@ -1,5 +1,10 @@
 @extends('client.layouts.app')
 @section('title', 'product detail')
+@section('css')
+        .row{
+            margin-right:0;
+        }
+@endsection
 @section('content')
     <!-- Page Header Start -->
 
