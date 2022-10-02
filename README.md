@@ -1,6 +1,7 @@
 <h1>Sản phẩm vẫn đang hoàn thiện  </h1>
 Setup:
-    copy .env.example .env
+
+    copy file .env.example => .env
 
     composer install
     php artisan key:generate
