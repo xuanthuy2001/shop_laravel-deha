@@ -3,6 +3,7 @@
 @section('content')
       <form action="{{route('categories.update',$category ->id)}}" method="post"  >
             @csrf
+            @method('put')
                   <div class="input-group  input-group-static  mb-4">
                         <label>name</label>
                         <input type="text" value="{{ $category -> name ?? old('name') }}" class="form-control" name="name">
@@ -24,7 +25,7 @@
                       </select>
                   </div>
               @endif
-            <button type="submit" class="btn btn-primary"> create</button>
+            <button type="submit" class="btn btn-primary"> update</button>
       </form>
 @endsection
 
