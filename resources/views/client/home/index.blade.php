@@ -9,7 +9,7 @@
             <div class="col-lg-3">
                 
             </div>
-<div class="col-lg-9">
+
              <div class="container-fluid pt-5" style="padding-left: 0">
                         <div class="row  pb-3">
                               <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
@@ -55,7 +55,7 @@
                                                 <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
                                                       <h6 class="text-truncate mb-3">{{ $product-> name }}</h6>
                                                       <div class="d-flex justify-content-center">
-                                                            <h6><del>${{ $product-> price }}</del></h6>
+                                                            <h6>${{ $product-> price }}</h6>
                                                             <h6 class="text-muted ml-2">{{ $product-> sale }}%</h6>
                                                       </div>
                                                 </div>
@@ -72,11 +72,18 @@
                               @endforeach
                   
                         </div>
+                        <nav aria-label="Page navigation example">
+                              <ul class="pagination justify-content-end">
+                                    {{ $products->links() }}
+                              </ul>
+                          </nav>
                   </div>
-            {{ $products->links() }}
+
             </div>
+
             </div>
-</div>
+
+  
 
 
 

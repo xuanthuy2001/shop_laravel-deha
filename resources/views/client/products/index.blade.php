@@ -2,29 +2,23 @@
 @extends('client.layouts.app')
 @section('title', 'products')
 @section('content')
-    <div class="row ">
-        <div class="d-inline-flex" style="margin-left:40px">
-            <p class="m-0"><a href="">Home</a></p>
-            <p class="m-0 px-2">/</p>
-            <p class="m-0">Shop</p>
-        </div>
-    </div>
+    
     <!-- Page Header End -->
 
 
     <!-- Shop Start -->
     <div class="container-fluid pt-5">
-        <div class="row px-xl-5">
-
-
-
-            <!-- Shop Product Start -->
-            <div class="col-lg-9 col-md-12">
+        <div class="row px-xl-5 pb-3">
+            <div class="row ">
+                <div class="d-inline-flex" style="margin-left:40px">
+                    <p class="m-0"><a href="">Home</a></p>
+                    <p class="m-0 px-2">/</p>
+                    <p class="m-0">Shop</p>
+                </div>
+            </div>
                 <div class="row pb-3 " id="product_list">
-               
-                 
                     @foreach ($products as $item)
-                    <div class="col-lg-4 col-md-6 col-sm-12 pb-1">
+                    <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
                         <div class="card product-item border-0 mb-4">
                             <a href="{{ route('client.products.show', $item->id) }}">
                                 <div
@@ -37,8 +31,8 @@
                             <div class="card-body border-left border-right text-center p-0 pt-4 pb-3 " id = "product_item"  >
                                 <h6  class="text-truncate mb-3 limit-text" >{{ $item->name }}</h6>
                                 <div class="d-flex justify-content-center">
-                                    <h6>${{ $item->sale }}</h6>
-                                    <h6 class="item-muted ml-2"><del>${{ $item->price }}</del></h6>
+                                    <h6 style="color: rgb(224, 26, 194)">{{ $item->sale }}%</h6>
+                                    <h6 class="item-muted ml-2">{{ $item->price }}$</h6>
                                 </div>
                             </div>
                             <div class="card-footer d-flex justify-content-between bg-light border">
@@ -63,7 +57,7 @@
 
                     </div>
                 </div>
-            </div>
+          
             <!-- Shop Product End -->
         </div>
     </div>
