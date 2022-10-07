@@ -64,7 +64,6 @@
                                                 class="card-footer  bg-light border">
                                                       <a href="{{ route('client.products.show', $product->id) }}" class="btn btn-sm text-dark p-0"><i
                                                                   class="fas fa-eye text-primary mr-1"></i>View Detail</a>
-                                                
                                                 </div>
                                           </div>
                                     </div>
@@ -76,19 +75,11 @@
                               <ul class="pagination justify-content-end">
                                     {{ $products->links() }}
                               </ul>
-                          </nav>
+                        </nav>
                   </div>
 
             </div>
 
             </div>
-
-  
-
-
-
-
-
-
 @endsection
 
